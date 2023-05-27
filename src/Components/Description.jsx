@@ -4,6 +4,20 @@ const Description = (props) => {
     <>
       <h3>{props.title}</h3>
       <img src={props.image} alt="" />
+      {props.trailer ? (
+        <iframe
+          width="560"
+          height="315"
+          src={props.trailer}
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      ) : (
+        <h1>No trailer found</h1>
+      )}
+
       {props.description ? (
         <p>{props.description}</p>
       ) : (

@@ -151,3 +151,6 @@ body::-webkit-scrollbar {
   color: #fff;
   margin-left: 20px;
 }
+h1 {
+  color: #fff;
+}
