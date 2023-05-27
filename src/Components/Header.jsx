@@ -18,7 +18,6 @@ const Header = ({ section }) => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data[7].type);
         const Posts = data.data.map((anime) => ({
           title: anime.title,
           image: anime.images.jpg.large_image_url,
@@ -36,7 +35,6 @@ const Header = ({ section }) => {
   const getDescription = (anime) => {
     setSelectedAnime(anime);
   };
-
   return (
     <>
       <div className="nav">
