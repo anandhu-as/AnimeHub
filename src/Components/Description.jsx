@@ -2,7 +2,12 @@ import React from "react";
 const Description = (props) => {
   return (
     <>
-      <h3>{props.title}  {props.year}</h3>
+      <h3>
+        {props.title} {props.year}
+      </h3>
+      <p>
+        {props.rating} {props.type}
+      </p>
       <img src={props.image} alt="" />
       {props.trailer ? (
         <iframe
