@@ -18,11 +18,14 @@ const Header = ({ section }) => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data.data[8].year);
         const Posts = data.data.map((anime) => ({
           title: anime.title,
           image: anime.images.jpg.large_image_url,
           description: anime.background,
           trailer: anime.trailer ? anime.trailer.embed_url : null,
+          episodes:anime.episodes,
+          year:anime.year
         }));
         setAnimepost(Posts);
         setLoading(false);
@@ -55,6 +58,8 @@ const Header = ({ section }) => {
             title={selectedAnime.title}
             image={selectedAnime.image}
             trailer={selectedAnime.trailer}
+            episodes={selectedAnime.episodes}
+            year={selectedAnime.year}
           />
         </div>
       ) : (

@@ -2,7 +2,7 @@ import React from "react";
 const Description = (props) => {
   return (
     <>
-      <h3>{props.title}</h3>
+      <h3>{props.title}  {props.year}</h3>
       <img src={props.image} alt="" />
       {props.trailer ? (
         <iframe
@@ -10,13 +10,11 @@ const Description = (props) => {
           height="315"
           src={props.trailer}
           title="YouTube video player"
-          frameborder="0"
-          allowfullscreen
         ></iframe>
       ) : (
         <h1>No trailer found</h1>
       )}
-
+      <h2>{props.episodes} episodes</h2>
       {props.description ? (
         <p>{props.description}</p>
       ) : (
