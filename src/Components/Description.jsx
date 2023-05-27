@@ -5,9 +5,11 @@ const Description = (props) => {
       <h3>
         {props.title} {props.year}
       </h3>
+      <p>{props.japanesetitle}</p>
       <p>
         {props.rating} {props.type}
       </p>
+      <p>{props.duration}</p>
       <img src={props.image} alt="" />
       {props.trailer ? (
         <iframe

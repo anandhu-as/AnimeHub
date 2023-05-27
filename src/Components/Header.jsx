@@ -8,25 +8,32 @@ const Header = ({ section }) => {
   const [selectedAnime, setSelectedAnime] = useState(null);
   const [search, setSearch] = useState("");
   let url = section;
-  if (section === "manga") url = `https://api.jikan.moe/v4/manga?q=${search}`;
+  if (section === "manga")
+    url = `https://api.jikan.moe/v4/manga?q=${search}`;
   else if (section === "trending")
-    url = `https://api.jikan.moe/v4/anime?q=slayer=${search}`;
+    url = `https://api.jikan.moe/v4/anime?q=${search}`;
   else if (section === "popular")
-    url = `https://api.jikan.moe/v4/anime?q=naruto=${search}`;
-  else url = `https://api.jikan.moe/v4/anime?q=${search}`;
+    url = `https://api.jikan.moe/v4/top/anime?q=${search}`;
+  else
+  url = `https://api.jikan.moe/v4/top/anime?=${search}&filter=bypopularity&sfw=1`;
+
+
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data.data[0]);
         const Posts = data.data.map((anime) => ({
           title: anime.title,
           image: anime.images.jpg.large_image_url,
           description: anime.background,
           trailer: anime.trailer ? anime.trailer.embed_url : null,
-          episodes:anime.episodes,
-          year:anime.year,
-          rating:anime.rating,
-          type:anime.type
+          episodes: anime.episodes,
+          year: anime.year,
+          rating: anime.rating,
+          type: anime.type,
+          duration: anime.duration,
+          japanesetitle: anime.title_japanese,
         }));
         setAnimepost(Posts);
         setLoading(false);
@@ -62,6 +69,8 @@ const Header = ({ section }) => {
             year={selectedAnime.year}
             rating={selectedAnime.rating}
             type={selectedAnime.type}
+            duration={selectedAnime.duration}
+            japanesetitle={selectedAnime.japanesetitle}
           />
         </div>
       ) : (
