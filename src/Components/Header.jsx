@@ -22,7 +22,7 @@ const Header = ({ section }) => {
           title: anime.title,
           image: anime.images.jpg.large_image_url,
           description: anime.background,
-          trailer: anime.trailer.embed_url, 
+          trailer: anime.trailer ? anime.trailer.embed_url : null,
         }));
         setAnimepost(Posts);
         setLoading(false);

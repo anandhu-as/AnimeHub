@@ -131,6 +131,9 @@ body::-webkit-scrollbar {
   color: #666;
   transform: ease 2s;
 }
+.description p:hover {
+  color: rgb(116, 97, 63);
+}
 .description img {
   padding: 20px;
   width: 200px;
