@@ -10,7 +10,7 @@ const Header = ({ section }) => {
   useEffect(() => {
     let url = "";
     if (section === "manga") {
-      url = `https://api.jikan.moe/v4/top/manga?q=${inputSearch}`;
+      url = `https://api.jikan.moe/v4/manga?q=${inputSearch}`;
     } else if (section === "trending") {
       url = `https://api.jikan.moe/v4/anime?q=${inputSearch}`;
     } else if (section === "popular") {
@@ -49,12 +49,14 @@ const Header = ({ section }) => {
         <h1>AnimeHub</h1>
         <Link to="/">Anime</Link>
         <Link to="/manga">Manga</Link>
+        {section === "manga" || section === "trending" ? (
         <input
           type="text"
           placeholder="search your anime"
           value={inputSearch}
           onChange={(e) => setInputSearch(e.target.value)}
         />
+      ) : null}
         <Link to="/trending">Trending</Link>
         <Link to="/popular">popular</Link>
         <Link to="/about">About</Link>
