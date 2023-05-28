@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 const Description = (props) => {
   const [showTrailer, setShowTrailer] = useState(false);
   const showAnimeTrailer = () => {
