@@ -50,15 +50,16 @@ const Header = ({ section }) => {
         <Link to="/">Anime</Link>
         <Link to="/manga">Manga</Link>
         {section === "manga" || section === "trending" ? (
-        <input
-          type="text"
-          placeholder="search your anime"
-          value={inputSearch}
-          onChange={(e) => setInputSearch(e.target.value)}
-        />
-      ) : null}
+          <input
+            type="text"
+            placeholder="search your anime"
+            value={inputSearch}
+            onChange={(e) => setInputSearch(e.target.value)}
+          />
+        ) : null}
         <Link to="/trending">Trending</Link>
         <Link to="/popular">popular</Link>
+        <Link to="/characters">characters </Link>
         <Link to="/about">About</Link>
       </div>
       {selectedAnime ? (

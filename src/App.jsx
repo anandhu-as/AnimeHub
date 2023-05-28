@@ -6,6 +6,7 @@ import { NotFound } from "./Components/NotFound";
 import Trending from "./Components/Trending";
 import Popular from "./Components/Popular";
 import About from "./Components/About";
+import character from "./Components/characters/character";
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/trending" Component={Trending}/>
           <Route path="/popular" Component={Popular}/>
           <Route path="/about" Component={About}/>
+          <Route path="/characters" Component={character}/>
         </Routes>
       </>
     </BrowserRouter>

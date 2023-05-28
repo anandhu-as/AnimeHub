@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/About.css"
-function About() {
+import "../styles/About.css";
+const  About=()=> {
   return (
+    
     <>
       <div className="nav">
+        
         <h1>AnimeHub</h1>
         <Link to="/">Anime</Link>
         <Link to="/manga">Manga</Link>
-        <input type="text" placeholder="search your anime" />
         <Link to="/trending">Trending</Link>
         <Link to="/popular">popular</Link>
         <Link to="/about">About</Link>
@@ -20,9 +21,12 @@ function About() {
           series,we use the Jikan API which provide data about anime,manga and
           anime related content{" "}
         </p>
-        
       </div>
-      <img src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2020/06/Itachi-Cropped.jpg" className="aboutImage" alt="" />
+      <img
+        src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2020/06/Itachi-Cropped.jpg"
+        className="aboutImage"
+        alt=""
+      />
       <footer className="footer">
         {" "}
         Created by @anandhu-as{" "}
