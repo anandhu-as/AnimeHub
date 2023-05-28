@@ -2,27 +2,28 @@ import React, { useEffect, useState } from "react";
 import "../styles/Header.css";
 import { Link } from "react-router-dom";
 import Description from "./Description";
+
 const Header = ({ section }) => {
   const [animepost, setAnimepost] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedAnime, setSelectedAnime] = useState(null);
-  const [search, setSearch] = useState("");
-  let url = section;
-  if (section === "manga")
-    url = `https://api.jikan.moe/v4/manga?q=${search}`;
-  else if (section === "trending")
-    url = `https://api.jikan.moe/v4/anime?q=${search}`;
-  else if (section === "popular")
-    url = `https://api.jikan.moe/v4/top/anime?q=${search}`;
-  else
-  url = `https://api.jikan.moe/v4/top/anime?=${search}&filter=bypopularity&sfw=1`;
-
+  const [inputSearch, setInputSearch] = useState("");
 
   useEffect(() => {
+    let url = "";
+    if (section === "manga") {
+      url = `https://api.jikan.moe/v4/top/manga?q=${inputSearch}`;
+    } else if (section === "trending") {
+      url = `https://api.jikan.moe/v4/anime?q=${inputSearch}`;
+    } else if (section === "popular") {
+      url = `https://api.jikan.moe/v4/top/anime?q=${inputSearch}`;
+    } else {
+      url = `https://api.jikan.moe/v4/top/anime?q=${inputSearch}`;
+    }
+
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data[0]);
         const Posts = data.data.map((anime) => ({
           title: anime.title,
           image: anime.images.jpg.large_image_url,
@@ -38,10 +39,12 @@ const Header = ({ section }) => {
         setAnimepost(Posts);
         setLoading(false);
       });
-  }, [search]);
+  }, [section, inputSearch]);
+
   const getDescription = (anime) => {
     setSelectedAnime(anime);
   };
+
   return (
     <>
       <div className="nav">
@@ -51,8 +54,8 @@ const Header = ({ section }) => {
         <input
           type="text"
           placeholder="search your anime"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={inputSearch}
+          onChange={(e) => setInputSearch(e.target.value)}
         />
         <Link to="/trending">Trending</Link>
         <Link to="/popular">popular</Link>

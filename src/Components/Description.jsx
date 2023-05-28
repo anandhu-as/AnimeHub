@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+
 const Description = (props) => {
+  const [showTrailer, setShowTrailer] = useState(false);
+  const showAnimeTrailer = () => {
+    setShowTrailer(true);
+  };
+
   return (
     <>
       <h3>
@@ -12,14 +18,18 @@ const Description = (props) => {
       <p>{props.duration}</p>
       <img src={props.image} alt="" />
       {props.trailer ? (
-        <iframe
-          width="560"
-          height="315"
-          src={props.trailer}
-          title="YouTube video player"
-        ></iframe>
+        showTrailer ? (
+          <iframe
+            width="560"
+            height="315"
+            src={props.trailer}
+            title="YouTube video player"
+          ></iframe>
+        ) : (
+          <button onClick={showAnimeTrailer}>Show Trailer</button>
+        )
       ) : (
-        <h1>No trailer found</h1>
+        <h3>No trailer found.</h3>
       )}
       <h2>{props.episodes} episodes</h2>
       {props.description ? (
@@ -28,12 +38,12 @@ const Description = (props) => {
         <p>
           Anime is a form of Japanese animation whose origins go back before the
           1920s. Later, before and during World War II, many organizations for
-          artists and cartoonists were established.The term anime [a·nuh·mei] is
-          a Japanese colloquialism used as an abbreviation for the term
+          artists and cartoonists were established. The term anime [a·nuh·mei]
+          is a Japanese colloquialism used as an abbreviation for the term
           “animation.” Generally in Japan, the word anime (written アニメ) is
           synonymous with animation of any kind from anywhere. Internationally,
           however, anime is typically referred to as animation that is produced
-          from Japan
+          from Japan.
         </p>
       )}
     </>
