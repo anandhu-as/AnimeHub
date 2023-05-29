@@ -1,13 +1,13 @@
 import React from "react";
-const Info = (props) => {
+const Info = ({ name, nicknames, name_kanji, image, about }) => {// props destructuring
   return (
     <>
-      <h3>{props.name}</h3>
-      <p>{props.nicknames}</p>
-      <p>{props.name_kanji}</p>
-      <img src={props.image} alt="" />
+      <h3>{name}</h3>
+      <p>{nicknames}</p>
+      <p>{name_kanji}</p>
+      <img src={image} alt="" />
       <h2>About Character</h2>
-      <p>{props.about}</p>
+      <p>{about}</p>
     </>
   );
 };

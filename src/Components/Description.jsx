@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-const Description = (props) => {
+const Description = ({
+  title,
+  year,
+  japanesetitle,
+  rating,
+  type,
+  duration,
+  image,
+  trailer,
+  episodes,
+  description, // props destructuring
+}) => {
   const [showTrailer, setShowTrailer] = useState(false);
   const showAnimeTrailer = () => {
     setShowTrailer(true);
@@ -8,20 +19,20 @@ const Description = (props) => {
   return (
     <>
       <h3>
-        {props.title} {props.year}
+        {title} {year}
       </h3>
-      <p>{props.japanesetitle}</p>
+      <p>{japanesetitle}</p>
       <p>
-        {props.rating} {props.type}
+        {rating} {type}
       </p>
-      <p>{props.duration}</p>
-      <img src={props.image} alt="" />
-      {props.trailer ? (
+      <p>{duration}</p>
+      <img src={image} alt="" />
+      {trailer ? (
         showTrailer ? (
           <iframe
             width="560"
             height="315"
-            src={props.trailer}
+            src={trailer}
             title="YouTube video player"
           ></iframe>
         ) : (
@@ -30,9 +41,9 @@ const Description = (props) => {
       ) : (
         <h3>No trailer found.</h3>
       )}
-      <h2>{props.episodes} episodes</h2>
-      {props.description ? (
-        <p>{props.description}</p>
+      <h2>{episodes} episodes</h2>
+      {description ? (
+        <p>{description}</p>
       ) : (
         <p>
           Anime is a form of Japanese animation whose origins go back before the
