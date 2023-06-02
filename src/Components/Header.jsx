@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/Header.css";
 import { Link } from "react-router-dom";
 import Description from "./Description";
+import animeContext from "./AnimeContext";
 const Header = ({ section }) => {
   const [animepost, setAnimepost] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,6 +34,8 @@ const Header = ({ section }) => {
           type: anime.type,
           duration: anime.duration,
           japanesetitle: anime.title_japanese,
+          source: anime.source,
+          status: anime.status,
         }));
         setAnimepost(Posts);
         setLoading(false);
@@ -45,9 +48,10 @@ const Header = ({ section }) => {
 
   return (
     <>
+    <animeContext.Provider value={selectedAnime}>
       <div className="nav">
         <h1>AnimeHub</h1>
-        <Link to="/">Anime</Link>
+        <Link to="/header">Anime</Link>
         <Link to="/manga">Manga</Link>
         {section === "manga" || section === "trending" ? (
           <input
@@ -64,18 +68,7 @@ const Header = ({ section }) => {
       </div>
       {selectedAnime ? (
         <div className="description">
-          <Description
-            description={selectedAnime.description}
-            title={selectedAnime.title}
-            image={selectedAnime.image}
-            trailer={selectedAnime.trailer}
-            episodes={selectedAnime.episodes}
-            year={selectedAnime.year}
-            rating={selectedAnime.rating}
-            type={selectedAnime.type}
-            duration={selectedAnime.duration}
-            japanesetitle={selectedAnime.japanesetitle}
-          />
+          <Description />
         </div>
       ) : (
         false
@@ -140,6 +133,7 @@ const Header = ({ section }) => {
           ))}
         </div>
       )}
+      </animeContext.Provider>
     </>
   );
 };

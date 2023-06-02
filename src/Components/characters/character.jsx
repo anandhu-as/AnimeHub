@@ -9,10 +9,9 @@ const character = () => {
     fetch("https://api.jikan.moe/v4/top/characters")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data[2]);
         const items = data.data.map((animeCharacter) => ({
           name: animeCharacter.name,
-          image: animeCharacter.images.jpg.image_url,
+          image: animeCharacter.images.webp.image_url,
           about: animeCharacter.about,
           nicknames: animeCharacter.nicknames,
           name_kanji:animeCharacter.name_kanji
@@ -28,7 +27,7 @@ const character = () => {
     <>
       <div className="nav">
         <h1>AnimeHub</h1>
-        <Link to="/">Anime</Link>
+        <Link to="/header">Anime</Link>
         <Link to="/manga">Manga</Link>
         <Link to="/trending">Trending</Link>
         <Link to="/popular">popular</Link>

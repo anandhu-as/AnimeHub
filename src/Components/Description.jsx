@@ -1,17 +1,22 @@
-import React, { useState } from "react";
-const Description = ({
-  title,
-  year,
-  japanesetitle,
-  rating,
-  type,
-  duration,
-  image,
-  trailer,
-  episodes,
-  description, // props destructuring
-}) => {
+import React, { useContext, useState } from "react";
+import animeContext from "./AnimeContext";
+const Description = ({}) => {
   const [showTrailer, setShowTrailer] = useState(false);
+  const selectedAnime = useContext(animeContext);
+  const {
+    title,
+    image,
+    trailer,
+    episodes,
+    year,
+    rating,
+    type,
+    duration,
+    japanesetitle,
+    source,
+    status,
+    description,
+  } = selectedAnime;
   const showAnimeTrailer = () => {
     setShowTrailer(true);
   };
@@ -23,8 +28,9 @@ const Description = ({
       </h3>
       <p>{japanesetitle}</p>
       <p>
-        {rating} {type}
+        {rating} {type} {source}
       </p>
+      <p>status {status}</p>
       <p>{duration}</p>
       <img src={image} alt="" />
       {trailer ? (
