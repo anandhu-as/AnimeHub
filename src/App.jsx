@@ -12,6 +12,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <>
+      {/* routes */}
         <Routes>
           <Route path="/" Component={Header} />
           <Route path="/manga" Component={Manga} />
