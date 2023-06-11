@@ -3,6 +3,7 @@ import "../styles/Header.css";
 import { Link } from "react-router-dom";
 import Description from "./Description";
 import animeContext from "./AnimeContext";
+import Loader from "./Loader/Loader";
 const Header = ({ section }) => {
   const [animepost, setAnimepost] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,91 +49,44 @@ const Header = ({ section }) => {
 
   return (
     <>
-    <animeContext.Provider value={selectedAnime}>
-      <div className="nav">
-        <h1>AnimeHub</h1>
-        <Link to="/">Anime</Link>
-        <Link to="/manga">Manga</Link>
-        {section === "manga" || section === "trending" ? (
-          <input
-            type="text"
-            placeholder="search your anime"
-            value={inputSearch}
-            onChange={(e) => setInputSearch(e.target.value)}
-          />
-        ) : null}
-        <Link to="/trending">Trending</Link>
-        <Link to="/popular">popular</Link>
-        <Link to="/characters">characters </Link>
-        <Link to="/about">About</Link>
-      </div>
-      {selectedAnime ? (
-        <div className="description">
-          <Description />
+      <animeContext.Provider value={selectedAnime}>
+        <div className="nav">
+          <h1>AnimeHub</h1>
+          <Link to="/">Anime</Link>
+          <Link to="/manga">Manga</Link>
+          {section === "manga" || section === "trending" ? (
+            <input
+              type="text"
+              placeholder="search your anime"
+              value={inputSearch}
+              onChange={(e) => setInputSearch(e.target.value)}
+            />
+          ) : null}
+          <Link to="/trending">Trending</Link>
+          <Link to="/popular">popular</Link>
+          <Link to="/characters">characters </Link>
+          <Link to="/about">About</Link>
         </div>
-      ) : (
-        false
-      )}
-      {loading ? (
-        <>
-          <div className="box-of-star1">
-            <div className="star star-position1"></div>
-            <div className="star star-position2"></div>
-            <div className="star star-position3"></div>
-            <div className="star star-position4"></div>
-            <div className="star star-position5"></div>
-            <div className="star star-position6"></div>
-            <div className="star star-position7"></div>
+        {selectedAnime ? (
+          <div className="description">
+            <Description />
           </div>
-          <div className="box-of-star2">
-            <div className="star star-position1"></div>
-            <div className="star star-position2"></div>
-            <div className="star star-position3"></div>
-            <div className="star star-position4"></div>
-            <div className="star star-position5"></div>
-            <div className="star star-position6"></div>
-            <div className="star star-position7"></div>
+        ) : (
+          false
+        )}
+        {loading ? (
+          <>
+           <Loader/>   </>
+        ) : (
+          <div className="header">
+            {animepost.map((post, i) => (
+              <div key={i} onClick={() => getDescription(post)}>
+                <img src={post.image} alt="" />
+                <h2>{post.title}</h2>
+              </div>
+            ))}
           </div>
-          <div className="box-of-star3">
-            <div className="star star-position1"></div>
-            <div className="star star-position2"></div>
-            <div className="star star-position3"></div>
-            <div className="star star-position4"></div>
-            <div className="star star-position5"></div>
-            <div className="star star-position6"></div>
-            <div className="star star-position7"></div>
-          </div>
-          <div className="box-of-star4">
-            <div className="star star-position1"></div>
-            <div className="star star-position2"></div>
-            <div className="star star-position3"></div>
-            <div className="star star-position4"></div>
-            <div className="star star-position5"></div>
-            <div className="star star-position6"></div>
-            <div className="star star-position7"></div>
-          </div>
-          <div data-js="astro" className="astronaut">
-            <div className="head"></div>
-            <div className="arm arm-left"></div>
-            <div className="arm arm-right"></div>
-            <div className="body">
-              <div className="panel"></div>
-            </div>
-            <div className="leg leg-left"></div>
-            <div className="leg leg-right"></div>
-            <div className="schoolbag"></div>
-          </div>
-        </>
-      ) : (
-        <div className="header">
-          {animepost.map((post, i) => (
-            <div key={i} onClick={() => getDescription(post)}>
-              <img src={post.image} alt="" />
-              <h2>{post.title}</h2>
-            </div>
-          ))}
-        </div>
-      )}
+        )}
       </animeContext.Provider>
     </>
   );
