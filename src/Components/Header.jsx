@@ -51,7 +51,7 @@ const Header = ({ section }) => {
     <animeContext.Provider value={selectedAnime}>
       <div className="nav">
         <h1>AnimeHub</h1>
-        <Link to="/header">Anime</Link>
+        <Link to="/">Anime</Link>
         <Link to="/manga">Manga</Link>
         {section === "manga" || section === "trending" ? (
           <input

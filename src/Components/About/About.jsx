@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/About.css";
-const  About=()=> {
+import "../About/About.css";
+const About = () => {
   return (
-    
     <>
       <div className="nav">
-        
         <h1>AnimeHub</h1>
         <Link to="/">Anime</Link>
         <Link to="/manga">Manga</Link>
@@ -36,6 +34,6 @@ const  About=()=> {
       </footer>
     </>
   );
-}
+};
 
 export default About;

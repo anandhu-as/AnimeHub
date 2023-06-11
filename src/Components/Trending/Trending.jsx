@@ -1,6 +1,5 @@
 import React from "react";
-import Header from "./Header";
-
+import Header from "../Header";
 const Trending = () => {
   return <Header section="trending" />;
 };
