@@ -9,17 +9,16 @@ const Header = ({ section }) => {
   const [loading, setLoading] = useState(true);
   const [selectedAnime, setSelectedAnime] = useState(null);
   const [inputSearch, setInputSearch] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState("");
   useEffect(() => {
     let url = "";
-    if (section === "manga") {
-      url = `https://api.jikan.moe/v4/manga?q=${inputSearch}`;
-    } else if (section === "trending") {
-      url = `https://api.jikan.moe/v4/anime?q=${inputSearch}`;
-    } else if (section === "popular") {
-      url = `https://api.jikan.moe/v4/top/anime?q=${inputSearch}`;
-    } else {
-      url = `https://api.jikan.moe/v4/top/anime?q=${inputSearch}`;
-    }
+    section === "manga"
+      ? (url = `https://api.jikan.moe/v4/manga?q=${inputSearch}`)
+      : section === "trending"
+      ? (url = `https://api.jikan.moe/v4/anime?q=${inputSearch}`)
+      : section === "popular"
+      ? (url = `https://api.jikan.moe/v4/top/anime?q=${inputSearch}`)
+      : (url = `https://api.jikan.moe/v4/top/anime?q=${inputSearch}`);
 
     fetch(url)
       .then((res) => res.json())
@@ -47,11 +46,15 @@ const Header = ({ section }) => {
     setSelectedAnime(anime);
   };
 
+  const changeBackgroundColor = () => {
+    setBackgroundColor((prev) => (prev === "#000" ? "#fff" : "#000"));
+  };
+
   return (
     <>
       <animeContext.Provider value={selectedAnime}>
-        <div className="nav">
-          <h1>AnimeHub</h1>
+        <div className="nav" style={{ backgroundColor }}>
+          <h1>AnimeHub </h1>
           <Link to="/">Anime</Link>
           <Link to="/manga">Manga</Link>
           {section === "manga" || section === "trending" ? (
@@ -66,6 +69,10 @@ const Header = ({ section }) => {
           <Link to="/popular">popular</Link>
           <Link to="/characters">characters </Link>
           <Link to="/about">About</Link>
+          <i
+            className="fas fa-star-half-alt"
+            onClick={() => changeBackgroundColor()}
+          ></i>
         </div>
         {selectedAnime ? (
           <div className="description">
@@ -76,9 +83,10 @@ const Header = ({ section }) => {
         )}
         {loading ? (
           <>
-           <Loader/>   </>
+            <Loader />{" "}
+          </>
         ) : (
-          <div className="header">
+          <div className="header" style={{ backgroundColor: backgroundColor }}>
             {animepost.map((post, i) => (
               <div key={i} onClick={() => getDescription(post)}>
                 <img src={post.image} alt="" />
