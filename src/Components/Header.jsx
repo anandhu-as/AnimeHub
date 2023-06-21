@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import Description from "./Description";
 import animeContext from "./AnimeContext";
 import Loader from "./Loader/Loader";
+import AnimePost from "./AnimePost/AnimePost";
 const Header = ({ section }) => {
   const [animepost, setAnimepost] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedAnime, setSelectedAnime] = useState(null);
   const [inputSearch, setInputSearch] = useState("");
-  const [backgroundColor, setBackgroundColor] = useState("");
   useEffect(() => {
     let url = "";
     section === "manga"
@@ -19,7 +19,6 @@ const Header = ({ section }) => {
       : section === "popular"
       ? (url = `https://api.jikan.moe/v4/top/anime?q=${inputSearch}`)
       : (url = `https://api.jikan.moe/v4/top/anime?q=${inputSearch}`);
-
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -42,18 +41,11 @@ const Header = ({ section }) => {
       });
   }, [section, inputSearch]);
 
-  const getDescription = (anime) => {
-    setSelectedAnime(anime);
-  };
-
-  const changeBackgroundColor = () => {
-    setBackgroundColor((prev) => (prev === "#000" ? "#fff" : "#000"));
-  };
-
+  const getDescription = (anime) => setSelectedAnime(anime);
   return (
     <>
       <animeContext.Provider value={selectedAnime}>
-        <div className="nav" style={{ backgroundColor }}>
+        <div className="nav">
           <h1>AnimeHub </h1>
           <Link to="/">Anime</Link>
           <Link to="/manga">Manga</Link>
@@ -69,10 +61,6 @@ const Header = ({ section }) => {
           <Link to="/popular">popular</Link>
           <Link to="/characters">characters </Link>
           <Link to="/about">About</Link>
-          <i
-            className="fas fa-star-half-alt"
-            onClick={() => changeBackgroundColor()}
-          ></i>
         </div>
         {selectedAnime ? (
           <div className="description">
@@ -83,17 +71,15 @@ const Header = ({ section }) => {
         )}
         {loading ? (
           <>
-            <Loader />{" "}
+            <Loader />
+            {/*loader Component  */}
           </>
         ) : (
-          <div className="header" style={{ backgroundColor: backgroundColor }}>
-            {animepost.map((post, i) => (
-              <div key={i} onClick={() => getDescription(post)}>
-                <img src={post.image} alt="" />
-                <h2>{post.title}</h2>
-              </div>
-            ))}
-          </div>
+          <AnimePost
+         
+            animepost={animepost}
+            getDescription={getDescription}
+          />
         )}
       </animeContext.Provider>
     </>
