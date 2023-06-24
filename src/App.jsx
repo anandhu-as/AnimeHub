@@ -7,7 +7,6 @@ import Trending from "./Components/Trending/Trending";
 import Popular from "./Components/Popular/Popular";
 import About from "./Components/About/About";
 import character from "./Components/characters/character";
-import Login from "./Components/Login/Login";
 
 const App = () => {
   return (
@@ -21,7 +20,7 @@ const App = () => {
           <Route path="/popular" Component={Popular} />
           <Route path="/about" Component={About} />
           <Route path="/characters" Component={character} />
-          <Route path="/login" Component={Login} />
+  
         </Routes>
       </>
     </BrowserRouter>

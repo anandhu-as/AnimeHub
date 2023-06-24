@@ -20,12 +20,12 @@ const Description = ({}) => {
   const showAnimeTrailer = () => {
     setShowTrailer(true);
   };
-
   return (
     <>
       <h3>
         {title} {year}
       </h3>
+   
       <p>{japanesetitle}</p>
       <p>
         {rating} {type} {source}
