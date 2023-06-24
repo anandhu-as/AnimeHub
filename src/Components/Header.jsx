@@ -75,11 +75,7 @@ const Header = ({ section }) => {
             {/*loader Component  */}
           </>
         ) : (
-          <AnimePost
-         
-            animepost={animepost}
-            getDescription={getDescription}
-          />
+          <AnimePost animepost={animepost} getDescription={getDescription} />
         )}
       </animeContext.Provider>
     </>

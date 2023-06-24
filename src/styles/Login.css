@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-left: 250px;
+}
+
+.container img {
+  position: fixed;
+  left: 0px;
+  max-height: 700px;
+}
+
+.container input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 300px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.container button {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  width: 200px;
+  align-items: center;
+  display: flex;
+}
+
+.container .button-group {
+  display: flex;
+  gap: 10px;
+}
+.Login-title{
+    position: fixed;
+    top: 200px;
+    color: rgb(160, 132, 81);
+}

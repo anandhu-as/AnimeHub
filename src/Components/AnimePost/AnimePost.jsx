@@ -1,8 +1,8 @@
 import React from "react";
 
-const AnimePost = ({  animepost, getDescription }) => {
+const AnimePost = ({ animepost, getDescription }) => {
   return (
-    <div className="header" >
+    <div className="header">
       {animepost.map((post, i) => (
         <div key={i} onClick={() => getDescription(post)}>
           <img src={post.image} alt="" />

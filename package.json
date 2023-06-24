@@ -1,11 +1,13 @@
 {
   "homepage": "http://anandhu-as.github.io/AnimeHub",
   "name": "anime-api",
+  "start": "node server.cjs",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "react-scripts start --port 4000",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "vite build",
@@ -13,7 +15,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
     "axios": "^1.4.0",
+    "express": "^4.18.2",
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
